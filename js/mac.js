@@ -9,14 +9,39 @@ document.getElementById('promo').addEventListener('click', transaction)
 
 // Transaction Common Function For All Event
 function transaction(event) {
-    // If Promo Code Apply 
-    if (event.target.id === 'promo') {
-        applyPromo(event)
+    const triggerElement = event.target // where was the click?
+    const triggerParent = event.target.parentNode// find parent of where clicked?
+    // If Promo Code Applied
+    if (triggerElement.id === 'promo') {
+        applyPromo(triggerElement)
     }
     else {
-        changeHoverAndDescription(event.target.id)
-        setExtraCost(event.target.parentNode.id, event.target.id)
+        changeHoverAndDescription(triggerElement.id)
+        setExtraCost(triggerParent.id, triggerElement.id)
         updateTotal()
+    }
+}
+
+// Promo Handling 
+function applyPromo(event) {
+    // checked 20% Promo Code 'stevekaku' typed or not
+    if (event.previousElementSibling.value === 'stevekaku') {
+        // Get Total Price and Price Element 
+        const elementTotalPrice = document.getElementById('totalPrice')
+        const elementTotalFinal = document.getElementById('totalFinal')
+        // Get Total Price as Number type 
+        const totalPrice = Number(elementTotalPrice.textContent)
+        // Calculate Discount of 20 %
+        discountPrice = Math.round(totalPrice * 0.2)
+        // Subtracte Discount from total price and applied
+        elementTotalFinal.innerText = totalPrice - discountPrice
+        // Clear the Promo Input Field 
+        event.previousElementSibling.value = ''
+    }
+    else {
+        // alert('Promo Code Expired or Invalid')
+        // Clear the Promo Input Field 
+        event.previousElementSibling.value = ''
     }
 }
 
@@ -25,44 +50,45 @@ function transaction(event) {
 function changeHoverAndDescription(element) {
     switch (element) {
         case 'ram8gb':
-            document.getElementById('ram8gb').setAttribute('class', 'btn btn-sm btn-outline-dark active')
-            document.getElementById('ram16gb').setAttribute('class', 'btn btn-sm btn-outline-dark')
+            document.getElementById('ram8gb').setAttribute('class', 'mb-1 btn btn-sm btn-outline-dark active')
+            document.getElementById('ram16gb').setAttribute('class', 'mb-1 btn btn-sm btn-outline-dark')
             document.getElementById('listItemRam').textContent = '8GB'
             break
         case 'ram16gb':
-            document.getElementById('ram8gb').setAttribute('class', 'btn btn-sm btn-outline-dark')
-            document.getElementById('ram16gb').setAttribute('class', 'btn btn-sm btn-outline-dark active')
+            document.getElementById('ram8gb').setAttribute('class', 'mb-1 btn btn-sm btn-outline-dark')
+            document.getElementById('ram16gb').setAttribute('class', 'mb-1 btn btn-sm btn-outline-dark active')
             document.getElementById('listItemRam').textContent = '16GB'
             break
         case 'ssd256gb':
-            document.getElementById('ssd256gb').setAttribute('class', 'btn btn-sm btn-outline-dark active')
-            document.getElementById('ssd500gb').setAttribute('class', 'btn btn-sm btn-outline-dark')
-            document.getElementById('ssd1tb').setAttribute('class', 'btn btn-sm btn-outline-dark')
+            document.getElementById('ssd256gb').setAttribute('class', 'mb-1 btn btn-sm btn-outline-dark active')
+            document.getElementById('ssd500gb').setAttribute('class', 'mb-1 btn btn-sm btn-outline-dark')
+            document.getElementById('ssd1tb').setAttribute('class', 'mb-1 btn btn-sm btn-outline-dark')
             document.getElementById('listItemSsd').textContent = '256GB'
             break
         case 'ssd500gb':
-            document.getElementById('ssd256gb').setAttribute('class', 'btn btn-sm btn-outline-dark')
-            document.getElementById('ssd500gb').setAttribute('class', 'btn btn-sm btn-outline-dark active')
-            document.getElementById('ssd1tb').setAttribute('class', 'btn btn-sm btn-outline-dark')
+            document.getElementById('ssd256gb').setAttribute('class', 'mb-1 btn btn-sm btn-outline-dark')
+            document.getElementById('ssd500gb').setAttribute('class', 'mb-1 btn btn-sm btn-outline-dark active')
+            document.getElementById('ssd1tb').setAttribute('class', 'mb-1 btn btn-sm btn-outline-dark')
             document.getElementById('listItemSsd').textContent = '500GB'
             break
         case 'ssd1tb':
-            document.getElementById('ssd256gb').setAttribute('class', 'btn btn-sm btn-outline-dark')
-            document.getElementById('ssd500gb').setAttribute('class', 'btn btn-sm btn-outline-dark')
-            document.getElementById('ssd1tb').setAttribute('class', 'btn btn-sm btn-outline-dark active')
+            document.getElementById('ssd256gb').setAttribute('class', 'mb-1 btn btn-sm btn-outline-dark')
+            document.getElementById('ssd500gb').setAttribute('class', 'mb-1 btn btn-sm btn-outline-dark')
+            document.getElementById('ssd1tb').setAttribute('class', 'mb-1 btn btn-sm btn-outline-dark active')
             document.getElementById('listItemSsd').textContent = '1Tera Byte'
             break
         case 'prime':
-            document.getElementById('prime').setAttribute('class', 'btn btn-sm btn-outline-dark active')
-            document.getElementById('express').setAttribute('class', 'btn btn-sm btn-outline-dark ')
+            document.getElementById('prime').setAttribute('class', 'mb-1 btn btn-sm btn-outline-dark active')
+            document.getElementById('express').setAttribute('class', 'mb-1 btn btn-sm btn-outline-dark ')
             break
         case 'express':
-            document.getElementById('prime').setAttribute('class', 'btn btn-sm btn-outline-dark')
-            document.getElementById('express').setAttribute('class', 'btn btn-sm btn-outline-dark active')
+            document.getElementById('prime').setAttribute('class', 'mb-1 btn btn-sm btn-outline-dark')
+            document.getElementById('express').setAttribute('class', 'mb-1 btn btn-sm btn-outline-dark active')
             break
     }
 }
-// Set individual price for each added configuration 
+
+// Set individual price for changed configuration 
 function setExtraCost(parent, element) {
     // set default price zero as base price included 8GB Ram and 256gb SSD and Prime Delivery 
     let extraPrice = 0
@@ -84,6 +110,7 @@ function setExtraCost(parent, element) {
     document.getElementById(parent + 'ExtraCost').innerText = extraPrice
 }
 
+// Get All Amount and Update Total 
 function updateTotal() {
     // Get Element 
     const elementBasePrice = document.getElementById('basePrice')
@@ -99,29 +126,8 @@ function updateTotal() {
     const deliveryExtraCost = Number(elementDeliveryExtraCost.textContent)
     const totalPrice = Number(elementTotalPrice.textContent)
     let totalFinal = Number(elementTotalFinal.textContent)
-
+    // Set Total Price Without Coupon
     elementTotalPrice.innerText = basePrice + memoryExtraCost + storageExtraCost + deliveryExtraCost
+    // Set Total with discount on valid coupon
     elementTotalFinal.innerText = elementTotalPrice.innerText
-}
-
-function applyPromo(e) {
-    // checked 20% Promo Code 'stevekaku' typed or not
-    if (e.target.previousElementSibling.value === 'stevekaku') {
-        // Get Total Price and Price Element 
-        const elementTotalPrice = document.getElementById('totalPrice')
-        const elementTotalFinal = document.getElementById('totalFinal')
-        // Get Total Price as Number type 
-        const totalPrice = Number(elementTotalPrice.textContent)
-        // Calculate Discount of 20 %
-        discountPrice = Math.round(totalPrice * 0.2)
-        // Subtracte Discount from total price and applied
-        elementTotalFinal.innerText = totalPrice - discountPrice
-        // Clear the Promo Input Field 
-        e.target.previousElementSibling.value = ''
-    }
-    else {
-        alert('Promo Code Expired or Invalid')
-        // Clear the Promo Input Field 
-        e.target.previousElementSibling.value = ''
-    }
 }
