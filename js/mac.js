@@ -1,8 +1,8 @@
-document.getElementById('ram8gb').addEventListener('click', transaction)
-document.getElementById('ram16gb').addEventListener('click', transaction)
-document.getElementById('ssd256gb').addEventListener('click', transaction)
-document.getElementById('ssd500gb').addEventListener('click', transaction)
-document.getElementById('ssd1tb').addEventListener('click', transaction)
+document.getElementById('ram-8gb').addEventListener('click', transaction)
+document.getElementById('ram-16gb').addEventListener('click', transaction)
+document.getElementById('ssd-256gb').addEventListener('click', transaction)
+document.getElementById('ssd-500gb').addEventListener('click', transaction)
+document.getElementById('ssd-1tb').addEventListener('click', transaction)
 document.getElementById('prime').addEventListener('click', transaction)
 document.getElementById('express').addEventListener('click', transaction)
 document.getElementById('promo').addEventListener('click', transaction)
@@ -10,13 +10,13 @@ document.getElementById('promo').addEventListener('click', transaction)
 // Transaction Common Function For All Event
 function transaction(event) {
     const triggerElement = event.target // where was the click?
-    const triggerParent = event.target.parentNode// find parent of where clicked?
+    const triggerParent = event.target.parentNode// find parent of triggered event?
     // If Promo Code Applied
     if (triggerElement.id === 'promo') {
         applyPromo(triggerElement)
     }
     else {
-        changeHoverAndDescription(triggerElement.id)
+        changeHoverAndDescription(triggerParent.id, triggerElement.id)
         setExtraCost(triggerParent.id, triggerElement.id)
         updateTotal()
     }
@@ -46,45 +46,25 @@ function applyPromo(event) {
 }
 
 // Change Button Active State
-// Change text of list group item in Product Description 
-function changeHoverAndDescription(element) {
-    switch (element) {
-        case 'ram8gb':
-            document.getElementById('ram8gb').setAttribute('class', 'mb-1 btn btn-sm btn-outline-dark active')
-            document.getElementById('ram16gb').setAttribute('class', 'mb-1 btn btn-sm btn-outline-dark')
-            document.getElementById('listItemRam').textContent = '8GB'
-            break
-        case 'ram16gb':
-            document.getElementById('ram8gb').setAttribute('class', 'mb-1 btn btn-sm btn-outline-dark')
-            document.getElementById('ram16gb').setAttribute('class', 'mb-1 btn btn-sm btn-outline-dark active')
-            document.getElementById('listItemRam').textContent = '16GB'
-            break
-        case 'ssd256gb':
-            document.getElementById('ssd256gb').setAttribute('class', 'mb-1 btn btn-sm btn-outline-dark active')
-            document.getElementById('ssd500gb').setAttribute('class', 'mb-1 btn btn-sm btn-outline-dark')
-            document.getElementById('ssd1tb').setAttribute('class', 'mb-1 btn btn-sm btn-outline-dark')
-            document.getElementById('listItemSsd').textContent = '256GB'
-            break
-        case 'ssd500gb':
-            document.getElementById('ssd256gb').setAttribute('class', 'mb-1 btn btn-sm btn-outline-dark')
-            document.getElementById('ssd500gb').setAttribute('class', 'mb-1 btn btn-sm btn-outline-dark active')
-            document.getElementById('ssd1tb').setAttribute('class', 'mb-1 btn btn-sm btn-outline-dark')
-            document.getElementById('listItemSsd').textContent = '500GB'
-            break
-        case 'ssd1tb':
-            document.getElementById('ssd256gb').setAttribute('class', 'mb-1 btn btn-sm btn-outline-dark')
-            document.getElementById('ssd500gb').setAttribute('class', 'mb-1 btn btn-sm btn-outline-dark')
-            document.getElementById('ssd1tb').setAttribute('class', 'mb-1 btn btn-sm btn-outline-dark active')
-            document.getElementById('listItemSsd').textContent = '1Tera Byte'
-            break
-        case 'prime':
-            document.getElementById('prime').setAttribute('class', 'mb-1 btn btn-sm btn-outline-dark active')
-            document.getElementById('express').setAttribute('class', 'mb-1 btn btn-sm btn-outline-dark ')
-            break
-        case 'express':
-            document.getElementById('prime').setAttribute('class', 'mb-1 btn btn-sm btn-outline-dark')
-            document.getElementById('express').setAttribute('class', 'mb-1 btn btn-sm btn-outline-dark active')
-            break
+// Change text of list item in Product Description 
+function changeHoverAndDescription(parent, element) {
+    // Get All Buttons Under Parent
+    const getCustomizeButtons = document.querySelector('#' + parent).getElementsByTagName('button')
+
+    for (let singleNode of getCustomizeButtons) {
+        // Add class active when active event element found 
+        if (singleNode.id === element) {
+            singleNode.classList.toggle('active')
+        }
+        else {
+            singleNode.classList.remove('active')
+        }
+    }
+    /*Checked ParentNode is not delivery, as no list item included
+     for delivery section buttons */
+    if (parent !== 'delivery') {
+        // Set Contents by Convert To Uppercase Letters 
+        document.getElementById('list' + parent).textContent = element.toUpperCase()
     }
 }
 
@@ -93,13 +73,13 @@ function setExtraCost(parent, element) {
     // set default price zero as base price included 8GB Ram and 256gb SSD and Prime Delivery 
     let extraPrice = 0
     switch (element) {
-        case 'ram16gb':
+        case 'ram-16gb':
             extraPrice = 180
             break
-        case 'ssd500gb':
+        case 'ssd-500gb':
             extraPrice = 100
             break
-        case 'ssd1tb':
+        case 'ssd-1tb':
             extraPrice = 180
             break
         case 'express':
