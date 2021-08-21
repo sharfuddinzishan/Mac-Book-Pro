@@ -24,40 +24,40 @@
                     <p class="font-monospace lh-sm text-justify">Apple M1 chip with 8-core CPU with 4 performance cores
                         and 4 efficiency cores, 7-core GPU, and 16-core Neural Engine.</p>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">8GB unified memory</li>
-                        <li class="list-group-item">256GB SSD storage</li>
+                        <li class="list-group-item"><span id="listItemRam">8GB</span> unified memory</li>
+                        <li class="list-group-item"><span id="listItemSsd">256GB</span> SSD storage</li>
                         <li class="list-group-item">Two Thunderbolt / USB 4 ports</li>
                         <li class="list-group-item">Magic Mouse</li>
                     </ul>
                 </div>
                 <div id="itemCustomize">
-                    <div id="itemMemory">
+                    <div id="memory">
                         <h3>Memory</h3>
-                        <button id="" type="button" class="btn btn-sm btn-outline-dark active">
+                        <button id="ram8gb" type="button" class="btn btn-sm btn-outline-dark active">
                             8GB unified memory
                         </button>
-                        <button id="" type="button" class="btn btn-sm btn-outline-dark">
+                        <button id="ram16gb" type="button" class="btn btn-sm btn-outline-dark">
                             16GB unified memory
                         </button>
                     </div>
-                    <div id="itemStorage">
+                    <div id="storage">
                         <h3>Storage</h3>
-                        <button id="" type="button" class="btn btn-sm btn-outline-dark active">
+                        <button id="ssd256gb" type="button" class="btn btn-sm btn-outline-dark active">
                             256GB SSD storage
                         </button>
-                        <button id="" type="button" class="btn btn-sm btn-outline-dark">
+                        <button id="ssd500gb" type="button" class="btn btn-sm btn-outline-dark">
                             500GB SSD storage
                         </button>
-                        <button id="" type="button" class="btn btn-sm btn-outline-dark">
+                        <button id="ssd1tb" type="button" class="btn btn-sm btn-outline-dark">
                             1TB SSD storage
                         </button>
                     </div>
-                    <div id="itemDelivery">
+                    <div id="delivery">
                         <h3>Choose Your Delivery Option</h3>
-                        <button id="" type="button" class="btn btn-sm btn-outline-dark active">
+                        <button id="prime" type="button" class="btn btn-sm btn-outline-dark active">
                             Prime, Aug 25
                         </button>
-                        <button id="" type="button" class="btn btn-sm btn-outline-dark">
+                        <button id="express" type="button" class="btn btn-sm btn-outline-dark">
                             Express, Aug 22, charge $20
                         </button>
                     </div>
@@ -66,39 +66,39 @@
                 <div id="itemPrice">
                     <div class="d-flex justify-content-between border-bottom">
                         <span class="fst-italic fw-bold">Base Price</span>
-                        <span>$5,999</span>
+                        <span id="basePrice">1299</span>
                     </div>
 
                     <div class="d-flex justify-content-between border-bottom">
                         <span class="fst-italic fw-bold">Extra Memory Cost</span>
-                        <span>$999</span>
+                        <span id="memoryExtraCost">0</span>
                     </div>
 
                     <div class="d-flex justify-content-between border-bottom">
                         <span class="fst-italic fw-bold">Extra Storage Cost</span>
-                        <span>$199</span>
+                        <span id="storageExtraCost">0</span>
                     </div>
 
                     <div class="d-flex justify-content-between border-bottom border-3 border-dark">
                         <span class="fst-italic fw-bold">Delivery Charge</span>
-                        <span>$199</span>
+                        <span id="deliveryExtraCost">0</span>
                     </div>
                     <div class="d-flex justify-content-between  border-bottom fw-bolder">
                         <span>Total Price</span>
-                        <span>$7,197.00</span>
+                        <span id="totalPrice">1299</span>
                     </div>
                 </div>
 
                 <div id="itemPromo">
                     <h3>Add Promo Code</h3>
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Provide Promo Here">
-                        <button class="btn btn-danger" type="button" id="">Apply</button>
+                        <input id="promoCode" type="text" class="form-control" placeholder="Provide Promo Here">
+                        <button class="btn btn-danger" type="button" id="promo">Apply</button>
                     </div>
                 </div>
             </div>
             <div class="col-sm-12 border-top border-1">
-                <p class="text-center fs-2 fw-bold">Total Price: $<span>1233</span></p>
+                <p class="text-center fs-2 fw-bold">Total: $<span id="totalFinal">1299</span></p>
             </div>
         </div>
     </section>
