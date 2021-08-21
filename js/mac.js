@@ -26,22 +26,31 @@ function transaction(event) {
 
 // Promo Handling 
 function applyPromo(event) {
+    const trigerPreviousElement = event.previousElementSibling
+    const trigerPreviousValue = trigerPreviousElement.value.toLowerCase()
+    const promoCode = 'stevekaku'
     // checked 20% Promo Code 'stevekaku' typed or not
-    if (event.previousElementSibling.value === 'stevekaku') {
+    if (trigerPreviousValue === promoCode) {
         // Get Total Price and Price Element 
         const elementTotalPrice = document.getElementById('totalPrice')
         const elementTotalFinal = document.getElementById('totalFinal')
+
         // Get Total Price as Number type 
         const totalPrice = Number(elementTotalPrice.textContent)
         // Calculate Discount of 20 %
         discountPrice = Math.round(totalPrice * 0.2)
         // Subtracte Discount from total price and applied
         elementTotalFinal.innerText = totalPrice - discountPrice
+        // Promo Warning message For Invalid COde 
+        document.getElementById('promoWarning').classList.add('d-none')
+        document.getElementById('promoWarning').classList.remove('d-block')
         // Clear the Promo Input Field 
-        event.previousElementSibling.value = ''
+        trigerPreviousElement.value = ''
     }
     else {
         // alert('Promo Code Expired or Invalid')
+        document.getElementById('promoWarning').classList.add('d-block')
+        document.getElementById('promoWarning').classList.remove('d-none')
         // Clear the Promo Input Field 
         event.previousElementSibling.value = ''
     }
