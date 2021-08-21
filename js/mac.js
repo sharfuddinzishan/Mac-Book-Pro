@@ -6,6 +6,9 @@ document.getElementById('ssd-1tb').addEventListener('click', transaction)
 document.getElementById('prime').addEventListener('click', transaction)
 document.getElementById('express').addEventListener('click', transaction)
 document.getElementById('promo').addEventListener('click', transaction)
+document.getElementById('image1').addEventListener('click', imageChange)
+document.getElementById('image2').addEventListener('click', imageChange)
+document.getElementById('image3').addEventListener('click', imageChange)
 
 // Transaction Common Function For All Event
 function transaction(event) {
@@ -118,6 +121,7 @@ function updateTotal() {
     gets.totalFinal.innerText = gets.totalPrice.innerText
 }
 
+// Get All Elements 
 function getElements() {
     const gets =
     {
@@ -129,4 +133,10 @@ function getElements() {
         totalFinal: document.getElementById('totalFinal'),
     }
     return gets
+}
+
+// Change Image onclick 
+function imageChange(event) {
+    const getImageUrl = 'images/' + event.target.id + '.png'
+    document.getElementById('macImage').setAttribute('src', getImageUrl)
 }
