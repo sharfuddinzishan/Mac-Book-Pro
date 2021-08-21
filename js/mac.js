@@ -43,7 +43,7 @@ function applyPromo(event) {
         // Get Total Price as Number type 
         const totalPrice = Number(elementTotalPrice.textContent)
         // Calculate Discount of 20 %
-        discountPrice = (totalPrice * 0.2).toFixed(0)
+        discountPrice = (totalPrice * 0.2).toFixed()
         // Subtracte Discount from total price and applied
         elementTotalFinal.innerText = totalPrice - discountPrice
         // Promo Warning message For Invalid COde 
@@ -115,7 +115,7 @@ function updateTotal() {
     const memoryExtraCost = Number(gets.memoryExtraCost.textContent)
     const storageExtraCost = Number(gets.storageExtraCost.textContent)
     const deliveryExtraCost = Number(gets.deliveryExtraCost.textContent)
-    const totalPrice = Number(gets.totalPrice.textContent)
+    // const totalPrice = Number(gets.totalPrice.textContent)
 
     // Set Total Price Without Coupon
     gets.totalPrice.innerText = basePrice + memoryExtraCost + storageExtraCost + deliveryExtraCost
