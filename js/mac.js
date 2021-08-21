@@ -42,7 +42,7 @@ function applyPromo(event) {
         // Get Total Price as Number type 
         const totalPrice = Number(elementTotalPrice.textContent)
         // Calculate Discount of 20 %
-        discountPrice = Math.round(totalPrice * 0.2)
+        discountPrice = (totalPrice * 0.2).toFixed(0)
         // Subtracte Discount from total price and applied
         elementTotalFinal.innerText = totalPrice - discountPrice
         // Promo Warning message For Invalid COde 
