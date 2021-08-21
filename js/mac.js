@@ -9,8 +9,10 @@ document.getElementById('promo').addEventListener('click', transaction)
 
 // Transaction Common Function For All Event
 function transaction(event) {
-    const triggerElement = event.target // where was the click?
-    const triggerParent = event.target.parentNode// find parent of triggered event?
+    // where was the click
+    const triggerElement = event.target
+    // find parent of triggered event
+    const triggerParent = event.target.parentNode
     // If Promo Code Applied
     if (triggerElement.id === 'promo') {
         applyPromo(triggerElement)
@@ -64,7 +66,7 @@ function changeHoverAndDescription(parent, element) {
      for delivery section buttons */
     if (parent !== 'delivery') {
         // Set Contents by Convert To Uppercase Letters 
-        document.getElementById('list' + parent).textContent = element.toUpperCase()
+        document.getElementById('list' + parent).innerText = element.toUpperCase()
     }
 }
 
@@ -92,22 +94,30 @@ function setExtraCost(parent, element) {
 
 // Get All Amount and Update Total 
 function updateTotal() {
-    // Get Element 
-    const elementBasePrice = document.getElementById('basePrice')
-    const elementMemoryExtraCost = document.getElementById('memoryExtraCost')
-    const elementStorageExtraCost = document.getElementById('storageExtraCost')
-    const elementDeliveryExtraCost = document.getElementById('deliveryExtraCost')
-    const elementTotalPrice = document.getElementById('totalPrice')
-    const elementTotalFinal = document.getElementById('totalFinal')
+    // Get All Price/Amount Elements 
+    const gets = getElements()
     // Get Input as number type 
-    const basePrice = Number(elementBasePrice.textContent)
-    const memoryExtraCost = Number(elementMemoryExtraCost.textContent)
-    const storageExtraCost = Number(elementStorageExtraCost.textContent)
-    const deliveryExtraCost = Number(elementDeliveryExtraCost.textContent)
-    const totalPrice = Number(elementTotalPrice.textContent)
-    let totalFinal = Number(elementTotalFinal.textContent)
+    const basePrice = Number(gets.basePrice.textContent)
+    const memoryExtraCost = Number(gets.memoryExtraCost.textContent)
+    const storageExtraCost = Number(gets.storageExtraCost.textContent)
+    const deliveryExtraCost = Number(gets.deliveryExtraCost.textContent)
+    const totalPrice = Number(gets.totalPrice.textContent)
+
     // Set Total Price Without Coupon
-    elementTotalPrice.innerText = basePrice + memoryExtraCost + storageExtraCost + deliveryExtraCost
+    gets.totalPrice.innerText = basePrice + memoryExtraCost + storageExtraCost + deliveryExtraCost
     // Set Total with discount on valid coupon
-    elementTotalFinal.innerText = elementTotalPrice.innerText
+    gets.totalFinal.innerText = gets.totalPrice.innerText
+}
+
+function getElements() {
+    const gets =
+    {
+        basePrice: document.getElementById('basePrice'),
+        memoryExtraCost: document.getElementById('memoryExtraCost'),
+        storageExtraCost: document.getElementById('storageExtraCost'),
+        deliveryExtraCost: document.getElementById('deliveryExtraCost'),
+        totalPrice: document.getElementById('totalPrice'),
+        totalFinal: document.getElementById('totalFinal'),
+    }
+    return gets
 }
