@@ -31,6 +31,7 @@ function transaction(event) {
 function applyPromo(event) {
     const trigerPreviousElement = event.previousElementSibling
     const trigerPreviousValue = trigerPreviousElement.value.toLowerCase()
+    // Hard Coded Promo COde As Fixed and Specified Per Requirement 
     const promoCode = 'stevekaku'
     // checked 20% Promo Code 'stevekaku' typed or not
     if (trigerPreviousValue === promoCode) {
@@ -108,8 +109,8 @@ function setExtraCost(parent, element) {
 function updateTotal() {
     // Get All Price/Amount Elements 
     const gets = getElements()
-    // Get Input as number type 
-    const basePrice = Number(gets.basePrice.textContent)
+    // Hard Coded As Base Price Fixed
+    const basePrice = 1299
     const memoryExtraCost = Number(gets.memoryExtraCost.textContent)
     const storageExtraCost = Number(gets.storageExtraCost.textContent)
     const deliveryExtraCost = Number(gets.deliveryExtraCost.textContent)
@@ -125,7 +126,6 @@ function updateTotal() {
 function getElements() {
     const gets =
     {
-        basePrice: document.getElementById('basePrice'),
         memoryExtraCost: document.getElementById('memoryExtraCost'),
         storageExtraCost: document.getElementById('storageExtraCost'),
         deliveryExtraCost: document.getElementById('deliveryExtraCost'),
