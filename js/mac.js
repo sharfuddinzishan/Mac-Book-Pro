@@ -1,7 +1,7 @@
 document.getElementById('ram-8gb').addEventListener('click', transaction)
 document.getElementById('ram-16gb').addEventListener('click', transaction)
 document.getElementById('ssd-256gb').addEventListener('click', transaction)
-document.getElementById('ssd-500gb').addEventListener('click', transaction)
+document.getElementById('ssd-512gb').addEventListener('click', transaction)
 document.getElementById('ssd-1tb').addEventListener('click', transaction)
 document.getElementById('prime').addEventListener('click', transaction)
 document.getElementById('express').addEventListener('click', transaction)
@@ -90,7 +90,7 @@ function setExtraCost(parent, element) {
         case 'ram-16gb':
             extraPrice = 180
             break
-        case 'ssd-500gb':
+        case 'ssd-512gb':
             extraPrice = 100
             break
         case 'ssd-1tb':
