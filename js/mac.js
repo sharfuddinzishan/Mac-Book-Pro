@@ -9,6 +9,7 @@ document.getElementById('promo').addEventListener('click', transaction)
 document.getElementById('image1').addEventListener('click', imageChange)
 document.getElementById('image2').addEventListener('click', imageChange)
 document.getElementById('image3').addEventListener('click', imageChange)
+document.getElementById('image4').addEventListener('click', imageChange)
 
 // Transaction Common Function For All Event
 function transaction(event) {
