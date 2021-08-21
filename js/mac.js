@@ -7,7 +7,9 @@ document.getElementById('prime').addEventListener('click', transaction)
 document.getElementById('express').addEventListener('click', transaction)
 document.getElementById('promo').addEventListener('click', transaction)
 
+// Transaction Common Function For All Event
 function transaction(event) {
+    // If Promo Code Apply 
     if (event.target.id === 'promo') {
         applyPromo(event)
     }
@@ -18,6 +20,8 @@ function transaction(event) {
     }
 }
 
+// Change Button Active State
+// Change text of list group item in Product Description 
 function changeHoverAndDescription(element) {
     switch (element) {
         case 'ram8gb':
@@ -58,8 +62,9 @@ function changeHoverAndDescription(element) {
             break
     }
 }
-
+// Set individual price for each added configuration 
 function setExtraCost(parent, element) {
+    // set default price zero as base price included 8GB Ram and 256gb SSD and Prime Delivery 
     let extraPrice = 0
     switch (element) {
         case 'ram16gb':
@@ -75,17 +80,19 @@ function setExtraCost(parent, element) {
             extraPrice = 20
             break
     }
+    // Set Extra Cost
     document.getElementById(parent + 'ExtraCost').innerText = extraPrice
 }
 
 function updateTotal() {
+    // Get Element 
     const elementBasePrice = document.getElementById('basePrice')
     const elementMemoryExtraCost = document.getElementById('memoryExtraCost')
     const elementStorageExtraCost = document.getElementById('storageExtraCost')
     const elementDeliveryExtraCost = document.getElementById('deliveryExtraCost')
     const elementTotalPrice = document.getElementById('totalPrice')
     const elementTotalFinal = document.getElementById('totalFinal')
-
+    // Get Input as number type 
     const basePrice = Number(elementBasePrice.textContent)
     const memoryExtraCost = Number(elementMemoryExtraCost.textContent)
     const storageExtraCost = Number(elementStorageExtraCost.textContent)
@@ -98,17 +105,23 @@ function updateTotal() {
 }
 
 function applyPromo(e) {
+    // checked 20% Promo Code 'stevekaku' typed or not
     if (e.target.previousElementSibling.value === 'stevekaku') {
+        // Get Total Price and Price Element 
         const elementTotalPrice = document.getElementById('totalPrice')
         const elementTotalFinal = document.getElementById('totalFinal')
+        // Get Total Price as Number type 
         const totalPrice = Number(elementTotalPrice.textContent)
-
+        // Calculate Discount of 20 %
         discountPrice = Math.round(totalPrice * 0.2)
+        // Subtracte Discount from total price and applied
         elementTotalFinal.innerText = totalPrice - discountPrice
+        // Clear the Promo Input Field 
         e.target.previousElementSibling.value = ''
     }
     else {
         alert('Promo Code Expired or Invalid')
+        // Clear the Promo Input Field 
         e.target.previousElementSibling.value = ''
     }
 }

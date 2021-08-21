@@ -15,10 +15,17 @@
 <body>
     <section class="container p-5">
         <div class="row">
+
+            <!-- Start of Left Side Div mac Image  -->
             <div class="col-sm-12 col-md-6 d-flex justify-content-end">
                 <img style="width: 350px; height: 250px;" src="images/mac.png" class="img-thumbnail" alt="">
             </div>
-            <div class="mb-2 col-sm-12 col-md-6">
+            <!-- End of Left Side Div mac Image  -->
+
+            <!-- Start of Right Side Div Item  -->
+            <div id="item" class="mb-2 col-sm-12 col-md-6">
+
+                <!-- Start of Item Description  -->
                 <div id="itemDescription">
                     <h1 class="fw-bolder fs-2">Customize your Blue 24‑inch iMac with Apple M1 chip.</h1>
                     <p class="font-monospace lh-sm text-justify">Apple M1 chip with 8-core CPU with 4 performance cores
@@ -30,7 +37,12 @@
                         <li class="list-group-item">Magic Mouse</li>
                     </ul>
                 </div>
+                <!-- End of Item Description  -->
+
+                <!-- Start of Item Customize  -->
                 <div id="itemCustomize">
+
+                    <!-- Start of Memory  -->
                     <div id="memory">
                         <h3>Memory</h3>
                         <button id="ram8gb" type="button" class="btn btn-sm btn-outline-dark active">
@@ -40,6 +52,9 @@
                             16GB unified memory
                         </button>
                     </div>
+                    <!-- End of Memory  -->
+
+                    <!-- Start of Storage  -->
                     <div id="storage">
                         <h3>Storage</h3>
                         <button id="ssd256gb" type="button" class="btn btn-sm btn-outline-dark active">
@@ -52,6 +67,9 @@
                             1TB SSD storage
                         </button>
                     </div>
+                    <!-- End of Storage  -->
+
+                    <!-- Start of Delivery  -->
                     <div id="delivery">
                         <h3>Choose Your Delivery Option</h3>
                         <button id="prime" type="button" class="btn btn-sm btn-outline-dark active">
@@ -61,34 +79,48 @@
                             Express, Aug 22, charge $20
                         </button>
                     </div>
-                </div>
+                    <!-- End of Delivery  -->
 
+                </div>
+                <!-- End of Item Customize  -->
+
+                <!-- Start of Item Price Table  -->
                 <div id="itemPrice">
+
+                    <!-- Base Price  -->
                     <div class="d-flex justify-content-between border-bottom">
                         <span class="fst-italic fw-bold">Base Price</span>
                         <span id="basePrice">1299</span>
                     </div>
 
+                    <!-- Extra memory Cost  -->
                     <div class="d-flex justify-content-between border-bottom">
                         <span class="fst-italic fw-bold">Extra Memory Cost</span>
                         <span id="memoryExtraCost">0</span>
                     </div>
 
+                    <!-- Extra Storage Cost -->
                     <div class="d-flex justify-content-between border-bottom">
                         <span class="fst-italic fw-bold">Extra Storage Cost</span>
                         <span id="storageExtraCost">0</span>
                     </div>
 
+                    <!-- Delivery Charge -->
                     <div class="d-flex justify-content-between border-bottom border-3 border-dark">
                         <span class="fst-italic fw-bold">Delivery Charge</span>
                         <span id="deliveryExtraCost">0</span>
                     </div>
+
+                    <!-- Total Price -->
                     <div class="d-flex justify-content-between  border-bottom fw-bolder">
                         <span>Total Price</span>
                         <span id="totalPrice">1299</span>
                     </div>
-                </div>
 
+                </div>
+                <!-- End of Item Price Table  -->
+
+                <!-- Start of Promo  -->
                 <div id="itemPromo">
                     <h3>Add Promo Code</h3>
                     <div class="input-group">
@@ -96,34 +128,22 @@
                         <button class="btn btn-danger" type="button" id="promo">Apply</button>
                     </div>
                 </div>
+                <!-- End of Promo  -->
+
             </div>
+            <!-- End of Right Side Div Item  -->
+
+            <!-- Start of Total Final Amount Div  -->
             <div class="col-sm-12 border-top border-1">
                 <p class="text-center fs-2 fw-bold">Total: $<span id="totalFinal">1299</span></p>
             </div>
+            <!-- End of Total Final Amount Div  -->
+
         </div>
     </section>
 
-    <section>
-
-        <!-- <div id="productCart">
-
-         
-
-
-
-           
-        </div>
-    </section>
-
-
-    <div class="mt-2">
-
-    </div> -->
-
-
-
-        <!-- Custom JS File  -->
-        <script src="js/mac.js"></script>
+    <!-- Custom JS File  -->
+    <script src="js/mac.js"></script>
 </body>
 
 </html>
